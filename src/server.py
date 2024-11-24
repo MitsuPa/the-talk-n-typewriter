@@ -17,7 +17,7 @@ class TheTalkNTypewriterService(TheTalkNTypewriterBase):
 
 async def main():
     server = Server([TheTalkNTypewriterService()])
-    await server.start("127.0.0.1", 8089)
+    await server.start("0.0.0.0", 8089)
     await server.wait_closed()
 
 
