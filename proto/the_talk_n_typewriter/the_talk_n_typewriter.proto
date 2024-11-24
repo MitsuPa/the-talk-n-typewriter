@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package the_talk_n_typewriter;
+
+option go_package = "github.com/MitsuPa/the-talk-n-typewriter/proto";
+
+enum WhisperImplementation {
+  FASTER_WHISPER = 0;
+  WHISPER = 1;
+}
+
+enum WhisperModel {
+  LARGE_V3 = 0;
+  LARGE_V2 = 1;
+  LARGE_V1 = 2;
+  LARGE_V3_TURBO = 3;
+}
+
+message AudioInputRequest {
+  repeated string intput_urls = 1;
+  WhisperImplementation whisper_implementation = 2;
+  WhisperModel whisper_model = 3;
+  bool word_timestamps = 4;
+  bool retain_input_file = 5;
+  bool check_duplicate = 6;
+}
+
+message TranscriptionTask {
+  enum Status {
+    PENDING = 0;
+    IN_PROGRESS = 1;
+    COMPLETED = 2;
+    FAILED = 3;
+  }
+  string id = 1;
+  string input_url = 2;
+  Status status = 4;
+}
+
+service TheTalkNTypewriter {
+    rpc Transcribe (AudioInputRequest) returns (TranscriptionTask) {}
+}
