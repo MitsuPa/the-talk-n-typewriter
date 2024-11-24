@@ -28,14 +28,19 @@ services:
         codeUri: ./
         instanceConcurrency: 3
         caPort: 8089
+        layers:
+          - acs:fc:cn-hongkong:official:layers/Python39/versions/2
+          - >-
+            acs:fc:cn-hongkong:official:layers/Python39-Package-Collection/versions/2
         customRuntimeConfig:
           command:
             - python
           args:
             - 'src/server.py'
         environmentVariables:
-          layers:
-            - acs:fc:${vars.region}:official:layers/Python39/versions/2
+          PATH: >-
+            /opt/python3.9/bin:/usr/local/bin/apache-maven/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/ruby/bin:/opt/bin:/code:/code/bin
+          PYTHONPATH: /opt/python:/code
       triggers:
         - name: http2Trigger
           type: http
