@@ -24,7 +24,7 @@ services:
         description: 'the-talk-n-typewriter'
         timeout: 30
         memorySize: 512
-        runtime: python3.9
+        runtime: custom.debian10
         codeUri: ./
         instanceConcurrency: 3
         caPort: 8089
