@@ -13,7 +13,7 @@ services:
   the-talk-n-typewriter:
     component: fc
     actions:
-      pre-deploy:
+      post-deploy:
         - run: pip install -r requirements.txt -t .
           path: ./
     props:
