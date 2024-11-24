@@ -19,8 +19,6 @@ services:
     props:
       region: ${vars.region}
       service: ${vars.service}
-      layers:
-        - acs:fc:${vars.region}:official:layers/Python39/versions/2
       function:
         name: "the-talk-n-typewriter"
         description: 'the-talk-n-typewriter'
@@ -35,6 +33,9 @@ services:
             - python
           args:
             - 'src/server.py'
+        environmentVariables:
+          layers:
+            - acs:fc:${vars.region}:official:layers/Python39/versions/2
       triggers:
         - name: http2Trigger
           type: http
