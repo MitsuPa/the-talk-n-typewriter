@@ -9,7 +9,6 @@ from the_talk_n_typewriter import (
     TranscriptionTaskStatus,
 )
 from grpclib.server import Server
-from dotenv import load_dotenv
 
 if os.getenv("KAGGLE_CONFIG_DIR") is None:
     with tempfile.TemporaryDirectory() as tmpdirname:
